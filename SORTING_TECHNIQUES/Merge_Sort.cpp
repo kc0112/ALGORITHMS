@@ -18,20 +18,17 @@ void merg(int a[],int b[],int lb,int mid,int ub)
              b[k++]=a[j++];
         }
      }
-     if(i>mid)
-     {
-         while(j<=ub)
+   
+          while(j<=ub)
          {
              b[k++]=a[j++];
          }
-     }
-     else if(j>ub)
-     {
+  
          while(i<=mid)
          {
              b[k++]=a[i++];
          }
-     }
+     
  for(k=lb;k<=ub;k++)
    a[k]=b[k];
 }
