@@ -59,5 +59,5 @@ int main(){
     g.addEdge(4, 1);
     g.addEdge(2, 3);
     g.addEdge(3, 1);
-    g.toposort();
+    g.toposort(); 
 }
