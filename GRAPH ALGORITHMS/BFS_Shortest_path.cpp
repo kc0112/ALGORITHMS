@@ -43,7 +43,7 @@ void BFS(vector <int> adj[],int s,int V){
             {
                 visited[x]=true;
                 dist[x]=dist[curr_vertex]+1;
-                cout<<"shortest path from "<<curr_vertex<<" to "<<x<<" is : "<<dist[x]<<endl;
+                cout<<"shortest path from "<<s<<" to "<<x<<" is : "<<dist[x]<<endl;
                 Queue.push(x);
             }
         }
