@@ -139,6 +139,5 @@ int main()
     cout << "Following are strongly connected components in "
             "given graph \n";
     g.printSCCs();
-
     return 0;
 }
