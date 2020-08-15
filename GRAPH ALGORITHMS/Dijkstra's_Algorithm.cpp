@@ -26,7 +26,7 @@ void shortestPath(vector<pair<int,int> > adj[], int V, int src)
     // Create a vector for distances and initialize all
     // distances as infinite (INF)
     vector<int> dist(V, INF);
-    vector<bool>visited(V,false);
+    vector<int>parent(V,src);
     // Insert source itself in priority queue and initialize
     // its distance as 0.
     pq.push(make_pair(0, src));
@@ -44,7 +44,6 @@ void shortestPath(vector<pair<int,int> > adj[], int V, int src)
         // in pair)
         int u = pq.top().second;
         pq.pop();
-        visited[u]=true;
         // Get all adjacent of u.
         for (auto x : adj[u])
         {
@@ -54,19 +53,20 @@ void shortestPath(vector<pair<int,int> > adj[], int V, int src)
             int weight = x.second;
 
             // If there is shorted path to v through u.
-            if ((dist[v] > dist[u] + weight)&&(visited[v]==false))
+            if ((dist[v] > dist[u] + weight))
             {
                 // Updating distance of v
                 dist[v] = dist[u] + weight;
+                parent[v]=u;
                 pq.push(make_pair(dist[v], v));
             }
         }
     }
 
     // Print shortest distances stored in dist[]
-    printf("Vertex Distance from Source\n");
+    cout<<"Vertex Distance from Source\n";
     for (int i = 0; i < V; ++i)
-        printf("%d \t\t %d\n", i, dist[i]);
+        cout<<i<<" \t\t "<<dist[i]<<" \t\t "<<parent[i]<<"\n";
 }
 
 // Driver program to test methods of graph class
