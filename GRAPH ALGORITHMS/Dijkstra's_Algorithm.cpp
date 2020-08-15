@@ -20,15 +20,13 @@ void addEdge(vector <pair<int, int> > adj[], int u,
 void shortestPath(vector<pair<int,int> > adj[], int V, int src)
 {
     // Create a priority queue to store vertices that
-    // are being preprocessed. This is weird syntax in C++.
-    // Refer below link for details of this syntax
-    // http://geeksquiz.com/implement-min-heap-using-stl/
+    // are being preprocessed. 
     priority_queue< iPair, vector <iPair> , greater<iPair> > pq;
 
     // Create a vector for distances and initialize all
     // distances as infinite (INF)
     vector<int> dist(V, INF);
-
+    vector<bool>visited(V,false);
     // Insert source itself in priority queue and initialize
     // its distance as 0.
     pq.push(make_pair(0, src));
@@ -46,7 +44,7 @@ void shortestPath(vector<pair<int,int> > adj[], int V, int src)
         // in pair)
         int u = pq.top().second;
         pq.pop();
-
+        visited[u]=true;
         // Get all adjacent of u.
         for (auto x : adj[u])
         {
@@ -56,7 +54,7 @@ void shortestPath(vector<pair<int,int> > adj[], int V, int src)
             int weight = x.second;
 
             // If there is shorted path to v through u.
-            if (dist[v] > dist[u] + weight)
+            if ((dist[v] > dist[u] + weight)&&(visited[v]==false))
             {
                 // Updating distance of v
                 dist[v] = dist[u] + weight;
@@ -94,5 +92,6 @@ int main()
     addEdge(adj, 7, 8, 7);
 
     shortestPath(adj, V, 0);
+
     return 0;
 }
