@@ -16,7 +16,7 @@ int merg(int a[],int b[],int lb,int mid,int ub)
          else
          {
              b[k++]=a[j++];
-             inv=inv+(mid+1-i);
+             inv=inv+(mid-i);
         }
      }
 
