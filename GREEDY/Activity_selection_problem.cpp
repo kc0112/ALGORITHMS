@@ -11,6 +11,7 @@ int main(){
     for(int i{0};i<start.size();i++){
         prob.insert(make_pair(finish[i],start[i]));
     }
+    
     auto it =prob.begin();
     cout<<it->second<<":"<<it->first<<endl;
     it++;
