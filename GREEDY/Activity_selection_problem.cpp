@@ -7,7 +7,7 @@ int main(){
     vector<int> start =  {1, 3, 0, 5, 8, 5};
     vector<int> finish =  {2, 4, 6, 7, 9, 9};
 
-    map<int,int>prob;
+    multimap<int,int>prob;
     for(int i{0};i<start.size();i++){
         prob.insert(make_pair(finish[i],start[i]));
     }
