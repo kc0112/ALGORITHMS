@@ -1,0 +1,84 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+class Edges{
+public:
+    int src;
+    int nbr;
+    int wt;
+
+    Edges(int source, int neighbour, int weight){
+        this->src = source;
+        this->nbr = neighbour;
+        this->wt = weight;
+    }
+};
+
+class Pair{
+public:
+    int vert;
+    int cost;
+
+    Pair(int v, int c){
+    this->vert = v;
+    this->cost = c;
+    }
+};
+
+class cmp{
+public:
+     bool operator()(const Pair& x,const Pair& y)const
+     {
+         if (x.cost == y.cost){
+             return x.vert >= y.vert;
+         }
+         return (x.cost > y.cost);
+     }
+};
+
+int mwrtcap(vector< vector<Edges> > graph){
+    vector< bool > visited(graph.size(), false);	
+    int ans = 0;
+    priority_queue<Pair, vector<Pair>, cmp> pq;
+    pq.push( Pair(1, 0) );
+
+    while(pq.size() > 0){
+        Pair rp = pq.top();
+        pq.pop();
+
+        if (visited[rp.vert] == true)
+            continue;
+        else
+            visited[rp.vert] = true;
+
+        ans+=rp.cost;
+
+        for (Edges edge: graph[rp.vert]){
+            if (visited[edge.nbr] == false){
+                pq.push( Pair( edge.nbr, edge.wt ) );
+            }
+        }
+    }
+    return ans;
+}
+
+int main(){
+    int v; cin >> v;
+    int e; cin >> e;
+
+    vector< vector<Edges> > graph(v+1);
+
+    int v1,v2,wt;
+
+    for (int i = 0; i < e; i++){
+        cin >> v1;
+        cin >> v2;
+        cin >> wt;
+        graph[v1].push_back( Edges(v1, v2, wt) );
+        graph[v2].push_back( Edges(v2, v1, wt) );
+    }
+    cout<<mwrtcap(graph)<<endl;
+}
