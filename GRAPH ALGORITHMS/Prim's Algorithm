@@ -43,19 +43,26 @@ int mwrtcap(vector< vector<Edges> > graph){
     vector< bool > visited(graph.size(), false);	
     int ans = 0;
     priority_queue<Pair, vector<Pair>, cmp> pq;
+    
+    //pushed src
     pq.push( Pair(1, 0) );
 
     while(pq.size() > 0){
+    
+    // pop min edge
         Pair rp = pq.top();
         pq.pop();
-
+        
+    // if visited->next, else->mark visited
         if (visited[rp.vert] == true)
             continue;
         else
             visited[rp.vert] = true;
-
+    
+    // add to answer
         ans+=rp.cost;
 
+    // push unvisited edges
         for (Edges edge: graph[rp.vert]){
             if (visited[edge.nbr] == false){
                 pq.push( Pair( edge.nbr, edge.wt ) );
