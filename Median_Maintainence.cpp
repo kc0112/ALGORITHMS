@@ -20,9 +20,9 @@ int main(){
             min_heap.push(max_heap.top());
             max_heap.pop();
         }
-        else if(max_heap.size()>min_heap.size()+1){
-            min_heap.push(max_heap.top());
-            max_heap.pop();
+        else if(max_heap.size()<min_heap.size()+1){
+            max_heap.push(min_heap.top());
+            min_heap.pop();
         }
         cout<<"Currrent Median is : ";
         if(max_heap.size()==min_heap.size()){
